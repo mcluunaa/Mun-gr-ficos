@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Análisis de Sismos</title>
+    <style>
+        body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; display: flex; background-color: #f8f9fa; }
+        .sidebar { width: 270px; background-color: #2c3e50; color: white; height: 100vh; position: fixed; display: flex; flex-direction: column; padding-top: 20px; overflow-y: auto;}
+        .sidebar h2 { text-align: center; font-size: 1.3rem; margin-bottom: 25px; border-bottom: 1px solid #34495e; padding-bottom: 15px;}
+        
+        /* Estilos de los menús desplegables */
+        details { margin-bottom: 10px; width: 100%; }
+        summary { padding: 12px 20px; font-size: 1.05rem; font-weight: bold; cursor: pointer; background-color: #34495e; list-style: none; display: flex; justify-content: space-between; align-items: center;}
+        summary::-webkit-details-marker { display: none; }
+        summary:hover { background-color: #3e5871; }
+        
+        .submenu { background-color: #1a252f; }
+        .submenu a { color: #ecf0f1; text-decoration: none; padding: 12px 15px 12px 35px; display: block; font-size: 0.92rem; transition: 0.2s;}
+        .submenu a:hover { background-color: #e74c3c; color: white; }
+
+        .content { margin-left: 270px; padding: 40px; width: calc(100% - 270px); box-sizing: border-box; }
+        .grafico-container { margin-bottom: 30px; text-align: center; }
+        .card-explicacion { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 25px; }
+        .card-explicacion ul { padding-left: 20px; line-height: 1.6; }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Sismos Históricos</h2>
+
+        <!-- MENÚ 1: LISTADO DE DATOS -->
+        <details open>
+            <summary>Listado de Datos ▾</summary>
+            <div class="submenu">
+                <a href="{% url 'datos_principales' %}">1. Columnas Principales</a>
+                <a href="{% url 'datos_secundarios' %}">2. Columnas Relevantes</a>
+                <a href="{% url 'datos_especificos' %}">3. Información Específica</a>
+            </div>
+        </details>
+
+        <!-- MENÚ 2: GRÁFICOS -->
+        <details open>
+            <summary>Gráficos ▾</summary>
+            <div class="submenu">
+                <a href="{% url 'grafico_1' %}">1. Evolución Histórica de Sismos</a>
+                <a href="{% url 'grafico_2' %}">2. Top 10 Regiones con Mayor Sismicidad</a>
+                <a href="{% url 'grafico_3' %}">3. Evolución Temporal Interactiva</a>
+                <a href="{% url 'grafico_4' %}">4. Profundidad vs Magnitud</a>
+                <a href="{% url 'mapa_terremotos' %}">5. Mapa 3D Interactivo</a>
+            </div>
+        </details>
+    </div>
+
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
